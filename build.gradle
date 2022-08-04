@@ -1,0 +1,56 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlin_version = '1.7.10'
+    ext.hilt_version = '2.42'
+    ext.minSdkVersion = 21
+    ext.targetSdkVersion = 32
+    ext.compileSdkVersion = 32
+    ext.buildToolsVersion = "30.0.2"
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.2.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+        classpath 'com.google.gms:google-services:4.3.13'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+// Define versions in a single place
+ext {
+    // Sdk and tools
+    // Support library and architecture components support minSdk 14 and above.
+    activityKtxVersion= '1.6.0-alpha05'
+    androidXJunitVersion = '1.1.4-alpha07'
+    annotationVersion ='1.4.0'
+    appcompatVersion='1.6.0-alpha05'
+    assertjVersion = '3.19.0'
+    coreTestingVersion = '2.1.0'
+    coroutinesTestVersion = '1.4.2-native-mt'
+    dataStore = '1.0.0'
+    espressoIntentsVersion = '3.4.0'
+    espressoVersion = '3.4.0'
+    glide = '4.13.1'
+    junitVersion = '5.7.0'
+    livedata_ktx='2.5.1'
+    materialVersion= '1.7.0-alpha03'
+    mockVersion = '1.10.5'
+    moshiVersion = '1.13.0'
+    okhttpInterceptorVersion = '5.0.0-alpha.2'
+    retrofitVersion = '2.9.0'
+    roomDB = '2.5.0-alpha02'
+}
