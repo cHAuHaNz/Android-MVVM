@@ -38,7 +38,7 @@ class TestDataRepository @Inject constructor() : DataRepositorySource {
         return flow {
             emit(Resource.Success(LoginResponse("123", "Amandeep", "Chauhan",
                     "Sample Street", "69", "100001", "Chandigarh",
-                    "India", "chauhan@simplifiedbytes.in")))
+                    "India", "chauhan@example.com")))
         }
     }
 

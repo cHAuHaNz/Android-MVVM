@@ -8,21 +8,16 @@ import com.task.databinding.SplashLayoutBinding
 import com.task.ui.base.BaseActivity
 import com.task.ui.component.login.LoginActivity
 import com.task.SPLASH_DELAY
+import com.task.ui.component.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * Created by Amandeep Chauhan
  */
 @AndroidEntryPoint
-class SplashActivity : BaseActivity(){
+class SplashActivity : BaseActivity<SplashLayoutBinding>() {
 
-    private lateinit var binding: SplashLayoutBinding
-
-    override fun initViewBinding() {
-        binding = SplashLayoutBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
-    }
+    override fun initViewBinding() = SplashLayoutBinding.inflate(layoutInflater)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +32,6 @@ class SplashActivity : BaseActivity(){
             val nextScreenIntent = Intent(this, LoginActivity::class.java)
             startActivity(nextScreenIntent)
             finish()
-        }, SPLASH_DELAY.toLong())
+        }, SPLASH_DELAY)
     }
 }

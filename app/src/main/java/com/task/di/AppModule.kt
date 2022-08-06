@@ -6,6 +6,7 @@ import com.squareup.moshi.Moshi
 import com.task.BuildConfig
 import com.task.data.db.DatabaseService
 import com.task.data.local.LocalData
+import com.task.data.local.SharedPrefs
 import com.task.data.remote.moshiFactories.MyKotlinJsonAdapterFactory
 import com.task.data.remote.moshiFactories.MyStandardJsonAdapters
 import com.task.data.remote.service.RecipesService
@@ -39,6 +40,10 @@ class AppModule {
     fun provideCoroutineContext(): CoroutineContext {
         return Dispatchers.IO
     }
+
+    @Provides
+    @Singleton
+    fun provideSharedPrefs(): SharedPrefs = SharedPrefs
 
     /**
      * We need to write @Singleton on the provide method if we are create the instance inside this method

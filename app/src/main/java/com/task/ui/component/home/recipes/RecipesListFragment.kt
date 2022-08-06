@@ -1,30 +1,25 @@
-package com.task.ui.component.recipes
+package com.task.ui.component.home.recipes
 
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.*
 import android.widget.SearchView
-import android.widget.SearchView.OnQueryTextListener
 import android.widget.Toast
-import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.task.R
 import com.task.IntentExtras
+import com.task.R
 import com.task.data.Resource
 import com.task.data.dto.recipes.Recipes
 import com.task.data.dto.recipes.RecipesItem
 import com.task.data.error.SEARCH_ERROR
-import com.task.databinding.ActivityRecipesListBinding
-import com.task.ui.base.BaseActivity
+import com.task.databinding.FragmentRecipesListBinding
+import com.task.ui.base.BaseFragment
 import com.task.ui.component.details.DetailsActivity
-import com.task.ui.component.recipes.adapter.RecipesAdapter
 import com.task.utils.*
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,32 +27,37 @@ import dagger.hilt.android.AndroidEntryPoint
  * Created by Amandeep Chauhan
  */
 @AndroidEntryPoint
-class RecipesListActivity : BaseActivity<ActivityRecipesListBinding>() {
+class RecipesListFragment : BaseFragment<FragmentRecipesListBinding>(R.layout.fragment_recipes_list) {
 
-    private val viewModel: RecipesListViewModel by viewModels()
+    private val viewModel by viewModels<RecipesListViewModel>()
     private lateinit var recipesAdapter: RecipesAdapter
 
-    override fun initViewBinding() = ActivityRecipesListBinding.inflate(layoutInflater)
+    override fun initViewBinding(view: View) = FragmentRecipesListBinding.bind(view)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        supportActionBar?.title = getString(R.string.recipe)
-        val layoutManager = LinearLayoutManager(this)
+    override fun setupViews() {
+        setHasOptionsMenu(true)
+        val layoutManager = LinearLayoutManager(requireContext())
         binding.rvRecipesList.layoutManager = layoutManager
         binding.rvRecipesList.setHasFixedSize(true)
-        viewModel.getRecipes()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+    private fun handleSearch(query: String) {
+        if (query.isNotEmpty()) {
+            binding.pbLoading.visibility = View.VISIBLE
+            viewModel.onSearchClick(query)
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, menuInflater: MenuInflater) {
         menuInflater.inflate(R.menu.main_actions, menu)
         // Associate searchable configuration with the SearchView
         val searchView = menu.findItem(R.id.action_search)?.actionView as SearchView
         searchView.queryHint = getString(R.string.search_by_name)
-        val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        val searchManager = requireContext().getSystemService(Context.SEARCH_SERVICE) as SearchManager
         searchView.apply {
-            setSearchableInfo(searchManager.getSearchableInfo(componentName))
+            setSearchableInfo(searchManager.getSearchableInfo(requireActivity().componentName))
         }
-        searchView.setOnQueryTextListener(object : OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 handleSearch(query)
                 return false
@@ -67,7 +67,6 @@ class RecipesListActivity : BaseActivity<ActivityRecipesListBinding>() {
                 return false
             }
         })
-        return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -76,14 +75,6 @@ class RecipesListActivity : BaseActivity<ActivityRecipesListBinding>() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-    private fun handleSearch(query: String) {
-        if (query.isNotEmpty()) {
-            binding.pbLoading.visibility = VISIBLE
-            viewModel.onSearchClick(query)
-        }
-    }
-
 
     private fun bindListData(recipes: Recipes) {
         if (!(recipes.recipesList.isNullOrEmpty())) {
@@ -97,7 +88,7 @@ class RecipesListActivity : BaseActivity<ActivityRecipesListBinding>() {
 
     private fun navigateToDetailsScreen(navigateEvent: SingleEvent<RecipesItem>) {
         navigateEvent.getContentIfNotHandled()?.let {
-            val nextScreenIntent = Intent(this, DetailsActivity::class.java).apply {
+            val nextScreenIntent = Intent(requireContext(), DetailsActivity::class.java).apply {
                 putExtra(IntentExtras.EXTRA_RECIPE_ITEM_KEY, it)
             }
             startActivity(nextScreenIntent)
@@ -117,8 +108,8 @@ class RecipesListActivity : BaseActivity<ActivityRecipesListBinding>() {
     }
 
     private fun showDataView(show: Boolean) {
-        binding.tvNoData.visibility = if (show) GONE else VISIBLE
-        binding.rvRecipesList.visibility = if (show) VISIBLE else GONE
+        binding.tvNoData.visibility = if (show) View.GONE else View.VISIBLE
+        binding.rvRecipesList.visibility = if (show) View.VISIBLE else View.GONE
         binding.pbLoading.gone()
     }
 

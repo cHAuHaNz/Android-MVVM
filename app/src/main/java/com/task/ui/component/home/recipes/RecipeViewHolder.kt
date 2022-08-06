@@ -1,4 +1,4 @@
-package com.task.ui.component.recipes.adapter
+package com.task.ui.component.home.recipes
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide

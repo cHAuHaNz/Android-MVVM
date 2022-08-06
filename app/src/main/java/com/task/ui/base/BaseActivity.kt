@@ -1,29 +1,26 @@
 package com.task.ui.base
 
 import android.os.Bundle
-import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewbinding.ViewBinding
 
 /**
  * Created by Amandeep Chauhan
  */
 
+abstract class BaseActivity<T: ViewBinding> : AppCompatActivity() {
 
-abstract class BaseActivity : AppCompatActivity() {
-
-    abstract fun observeViewModel()
-    protected abstract fun initViewBinding()
+    protected lateinit var binding: T
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = initViewBinding()
+        setContentView(binding.root)
         initViewBinding()
         observeViewModel()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> finish()
-        }
-        return super.onOptionsItemSelected(item)
-    }
+    protected abstract fun initViewBinding(): T
+    abstract fun observeViewModel()
+
 }

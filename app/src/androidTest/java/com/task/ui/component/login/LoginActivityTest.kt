@@ -46,7 +46,7 @@ class LoginActivityTest {
         onView(withId(R.id.login)).check(matches(isDisplayed()))
         onView(withId(R.id.username)).perform(clearText())
         onView(withId(R.id.password)).perform(clearText())
-        onView(withId(R.id.username)).perform(typeText("chauhan@simplifiedbytes.in"))
+        onView(withId(R.id.username)).perform(typeText("chauhan@example.com"))
         onView(withId(R.id.password)).perform(typeText("chauhan"))
         onView(withId(R.id.login)).perform(click())
         Intents.intended(hasComponent(hasClassName("com.task.ui.component.recipes.RecipesListActivity")))
@@ -78,7 +78,7 @@ class LoginActivityTest {
         onView(withId(R.id.login)).check(matches(isDisplayed()))
         onView(withId(R.id.username)).perform(clearText())
         onView(withId(R.id.password)).perform(clearText())
-        onView(withId(R.id.username)).perform(typeText("chauhan@simplifiedbytes.in"))
+        onView(withId(R.id.username)).perform(typeText("chauhan@example.com"))
         onView(withId(R.id.password)).perform(typeText(""))
         onView(withId(R.id.login)).perform(click())
 

@@ -22,19 +22,13 @@ import dagger.hilt.android.AndroidEntryPoint
  */
 
 @AndroidEntryPoint
-class DetailsActivity : BaseActivity() {
+class DetailsActivity : BaseActivity<DetailsLayoutBinding>() {
 
     private val viewModel: DetailsViewModel by viewModels()
 
-    private lateinit var binding: DetailsLayoutBinding
     private var menu: Menu? = null
 
-
-    override fun initViewBinding() {
-        binding = DetailsLayoutBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
-    }
+    override fun initViewBinding() = DetailsLayoutBinding.inflate(layoutInflater)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

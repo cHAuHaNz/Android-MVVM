@@ -48,11 +48,11 @@ class LoginViewModelTest {
     @Test
     fun `login Success`() {
         // Let's do an answer for the liveData
-        val userName = "chauhan@simplifiedbytes.in"
+        val userName = "chauhan@example.com"
         val password = "chauhan"
         val loginResponse = LoginResponse("123", "Amandeep", "Chauhan",
                 "Sample Street", "69", "100001", "Chandigarh",
-                "India", "chauhan@simplifiedbytes.in")
+                "India", "chauhan@example.com")
 
         //1- Mock calls
         coEvery { dataRepository.doLogin(LoginRequest(userName, password)) } returns flow {
@@ -73,7 +73,7 @@ class LoginViewModelTest {
     @Test
     fun `login with Wrong Password`() {
         // Let's do an answer for the liveData
-        val userName = "chauhan@simplifiedbytes.in"
+        val userName = "chauhan@example.com"
         val password = " "
 
         //1- Mock calls

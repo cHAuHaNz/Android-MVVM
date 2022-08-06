@@ -10,13 +10,14 @@ plugins {
 android {
     compileSdkVersion rootProject.compileSdkVersion
     defaultConfig {
-        applicationId 'com.sample.task'
+        applicationId 'com.sample.app'
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "com.task.CustomTestRunner"
+        resValue "string", "app_version", "v$versionName"
     }
     buildFeatures {
         viewBinding = true
@@ -46,7 +47,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
+        jvmTarget = '1.8'
     }
     configurations.all {
         resolutionStrategy {
@@ -79,6 +80,10 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
     implementation "androidx.annotation:annotation:$annotationVersion"
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$livedata_ktx"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintlayout"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVMktx"
+    implementation "androidx.navigation:navigation-fragment-ktx:$navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$navigation"
     androidTestImplementation "androidx.test.ext:junit-ktx:$androidXJunitVersion"
     /**-------------------testing libs------------------------------------------**/
     //UI Testing , AndroidJUnitRunner and JUnit Rules & Espresso dependencies

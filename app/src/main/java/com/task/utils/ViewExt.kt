@@ -106,6 +106,14 @@ fun View.showToast(
     })
 }
 
+fun Context.showToast(message: String, duration: Int = Toast.LENGTH_LONG) {
+    Toast.makeText(this, message, duration).show()
+}
+
+fun Context.showToast(messageResId: Int, duration: Int = Toast.LENGTH_LONG) {
+    showToast(getString(messageResId, duration))
+}
+
 /**
  * Extension function to simplify setting an afterTextChanged action to EditText components.
  */

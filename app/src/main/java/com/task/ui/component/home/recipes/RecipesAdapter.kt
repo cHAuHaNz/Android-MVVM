@@ -1,4 +1,4 @@
-package com.task.ui.component.recipes.adapter
+package com.task.ui.component.home.recipes
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,8 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.task.data.dto.recipes.RecipesItem
 import com.task.databinding.RecipeItemBinding
 import com.task.ui.base.listeners.RecyclerItemListener
-import com.task.ui.component.home.recipes.RecipeViewHolder
-import com.task.ui.component.recipes.RecipesListViewModel
 
 /**
  * Created by Amandeep Chauhan

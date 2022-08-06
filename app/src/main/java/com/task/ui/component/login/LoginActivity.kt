@@ -9,6 +9,7 @@ import com.task.data.Resource
 import com.task.data.dto.login.LoginResponse
 import com.task.databinding.LoginActivityBinding
 import com.task.ui.base.BaseActivity
+import com.task.ui.component.home.HomeActivity
 import com.task.ui.component.recipes.RecipesListActivity
 import com.task.utils.*
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,20 +18,15 @@ import dagger.hilt.android.AndroidEntryPoint
  * Created by Amandeep Chauhan
  */
 @AndroidEntryPoint
-class LoginActivity : BaseActivity() {
+class LoginActivity : BaseActivity<LoginActivityBinding>() {
 
     private val loginViewModel: LoginViewModel by viewModels()
-    private lateinit var binding: LoginActivityBinding
+
+    override fun initViewBinding() =LoginActivityBinding.inflate(layoutInflater)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding.login.setOnClickListener { doLogin() }
-    }
-
-    override fun initViewBinding() {
-        binding = LoginActivityBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
     }
 
     override fun observeViewModel() {
@@ -61,7 +57,7 @@ class LoginActivity : BaseActivity() {
     }
 
     private fun navigateToMainScreen() {
-        val nextScreenIntent = Intent(this, RecipesListActivity::class.java)
+        val nextScreenIntent = Intent(this, HomeActivity::class.java)
         startActivity(nextScreenIntent)
         finish()
     }

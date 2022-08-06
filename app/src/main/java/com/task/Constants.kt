@@ -4,10 +4,11 @@ package com.task
  * Created by Amandeep Chauhan
  */
 
-const val SPLASH_DELAY = 3000
+const val SPLASH_DELAY = 3000L
+const val SHARED_PREFERENCES_FILE_NAME = "preferences"
 
-object SharedPrefKeys {
-    const val SHARED_PREFERENCES_FILE_NAME = "task"
+object PrefKeys {
+    const val DARK_MODE = "dark_mode"
     const val FAVOURITES_KEY = "favourites"
 }
 
