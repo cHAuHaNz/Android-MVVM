@@ -5,19 +5,20 @@
     android:id="@+id/rl_recipe_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="@dimen/space_1x"
+    app:cardElevation="1dp"
     app:cardUseCompatPadding="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/space_8x">
+        android:padding="@dimen/_6sdp">
 
         <ImageView
             android:id="@+id/iv_recipe_item_image"
-            android:layout_width="@dimen/image_view_width"
-            android:layout_height="@dimen/image_view_height"
+            android:layout_width="@dimen/_75sdp"
+            android:layout_height="@dimen/_75sdp"
             android:background="@color/image_background"
+            android:contentDescription="@null"
             android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -28,8 +29,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/space_8x"
-            android:layout_marginTop="@dimen/space_8x"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginTop="@dimen/_6sdp"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="@+id/iv_recipe_item_image"
             app:layout_constraintLeft_toRightOf="@+id/iv_recipe_item_image"
@@ -49,7 +50,7 @@
                 android:id="@+id/tv_caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_8x"
+                android:layout_marginTop="@dimen/_6sdp"
                 android:maxLines="2"
                 android:textColor="@color/text_color"
                 app:layout_constraintLeft_toRightOf="@+id/tv_name"

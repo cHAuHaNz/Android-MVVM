@@ -34,12 +34,13 @@
         android:layout_height="wrap_content"
         android:text="@string/no_data"
         android:textColor="@android:color/holo_red_dark"
-        android:textSize="@dimen/font_32x"
+        android:textSize="@dimen/_25ssp"
         android:textStyle="italic|bold"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
